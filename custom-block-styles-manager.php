@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: Custom Block Styles Manager
  * Description: Add custom block style variations with your own CSS.
@@ -80,9 +79,9 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 		/**
 		 * Add a direct action link on the Plugins page to the Block Styles overview.
 		 *
-		 * @param array $links Existing plugin action links.
+		 * @param string[] $links Existing plugin action links.
 		 *
-		 * @return array Modified links.
+		 * @return string[] Modified links.
 		 */
 		public static function add_plugin_action_link( array $links ): array {
 			// Only show to users who can edit posts (adjust capability if desired).
@@ -95,7 +94,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 
 			$link = sprintf( '<a href="%s">%s</a>', esc_url( $url ), esc_html( $label ) );
 
-			// Prepend so it's the first action link
+			// Prepend so it's the first action link.
 			array_unshift( $links, $link );
 
 			return $links;
@@ -249,7 +248,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 			}
 
 			$block_name = isset( $_POST['cbsm_block_name'] ) ? sanitize_text_field( wp_unslash( $_POST['cbsm_block_name'] ) ) : '';
-			$css_raw    = isset( $_POST['cbsm_custom_css'] ) ? wp_unslash( $_POST['cbsm_custom_css'] ) : '';
+			$css_raw    = isset( $_POST['cbsm_custom_css'] ) ? sanitize_textarea_field( wp_unslash( $_POST['cbsm_custom_css'] ) ) : '';
 
 			$registered_blocks = self::get_registered_blocks();
 			if ( $block_name && ! array_key_exists( $block_name, $registered_blocks ) ) {
@@ -274,7 +273,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 		 */
 		public static function enqueue_code_editor( string $hook ): void {
 			global $typenow;
-			// Code editor for single-post edit screens (post.php, post-new.php)
+			// Code editor for single-post edit screens (post.php, post-new.php).
 			if ( in_array( $hook, array( 'post-new.php', 'post.php' ), true ) && self::CPT === $typenow ) {
 				$settings = wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
 
@@ -293,7 +292,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 						true
 					);
 
-					// Pass the code editor settings to the external script
+					// Pass the code editor settings to the external script.
 					wp_localize_script( self::CODE_EDITOR_HANDLE, 'cbsmCodeEditorSettings', array( 'settings' => $settings ) );
 					wp_enqueue_script( self::CODE_EDITOR_HANDLE );
 				}
@@ -330,8 +329,10 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 
 		/**
 		 * Add "Block" and "CSS class" columns to the block styles list table.
+		 *
+		 * @param array $columns Existing columns.
 		 */
-		public static function add_block_type_columns( $columns ): array {
+		public static function add_block_type_columns( array $columns ): array {
 			$new = array();
 			foreach ( $columns as $key => $label ) {
 				$new[ $key ] = $label;
@@ -342,7 +343,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 				}
 			}
 
-			// Fallback: ensure columns exist
+			// Fallback: ensure columns exist.
 			if ( ! isset( $new['cbsm_block_type'] ) ) {
 				$new['cbsm_block_type'] = __( 'Block', 'custom-block-styles-manager' );
 			}
@@ -377,7 +378,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 					echo esc_html( $label );
 				}
 
-				// Include inline data for quick edit population
+				// Include inline data for quick edit population.
 				echo '<span class="cbsm-inline-block-data" style="display:none" data-block="' . esc_attr( $block_name ) . '"></span>';
 			}
 
@@ -434,7 +435,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 					if ( isset( $registered[ $val ] ) ) {
 						$used[ $val ] = $registered[ $val ];
 					} else {
-						// If the block is no longer registered, still show its raw value
+						// If the block is no longer registered, still show its raw value.
 						$used[ $val ] = $val;
 					}
 				}
@@ -446,7 +447,15 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 
 			natcasesort( $used );
 
+			// Require a valid nonce to apply the block filter coming from GET/POST.
+			$nonce = isset( $_REQUEST['cbsm_filter_nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['cbsm_filter_nonce'] ) ) : '';
+			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'cbsm_block_filter' ) ) {
+				return;
+			}
 			$current = isset( $_GET['cbsm_block_filter'] ) ? sanitize_text_field( wp_unslash( $_GET['cbsm_block_filter'] ) ) : '';
+
+			// Output a nonce field so filter submissions can be verified before applying.
+			echo '<input type="hidden" name="cbsm_filter_nonce" value="' . esc_attr( wp_create_nonce( 'cbsm_block_filter' ) ) . '" />';
 
 			echo '<select name="cbsm_block_filter" id="cbsm-block-filter">';
 			echo '<option value="">' . esc_html__( 'All blocks', 'custom-block-styles-manager' ) . '</option>';
@@ -459,8 +468,10 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 
 		/**
 		 * Apply the block filter to the list query.
+		 *
+		 * @param WP_Query $query Current WP_Query instance.
 		 */
-		public static function apply_block_filter( $query ): void {
+		public static function apply_block_filter( WP_Query $query ): void {
 			global $pagenow;
 
 			if ( ! is_admin() || 'edit.php' !== $pagenow ) {
@@ -469,6 +480,12 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 
 			$post_type = $query->get( 'post_type' );
 			if ( $post_type !== self::CPT ) {
+				return;
+			}
+
+			// Require a valid nonce to apply the block filter coming from GET/POST.
+			$nonce = isset( $_REQUEST['cbsm_filter_nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['cbsm_filter_nonce'] ) ) : '';
+			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'cbsm_block_filter' ) ) {
 				return;
 			}
 
@@ -481,8 +498,11 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 
 		/**
 		 * Output quick edit or bulk edit form bits for block selection.
+		 *
+		 * @param string $column_name Current column name.
+		 * @param string $post_type Current post type.
 		 */
-		public static function render_quick_edit_box( $column_name, $post_type ): void {
+		public static function render_quick_edit_box( string $column_name, string $post_type ): void {
 			if ( $post_type !== self::CPT || $column_name !== 'cbsm_block_type' ) {
 				return;
 			}
@@ -495,11 +515,11 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 						<span class="title"><?php esc_html_e( 'Block', 'custom-block-styles-manager' ); ?></span>
 						<select name="cbsm_block_name">
 							<option value="">
-							<?php
-							/* translators: No change option in bulk edit */
+								<?php
+								/* translators: No change option in bulk edit */
 								esc_html_e( '— No change —', 'custom-block-styles-manager' );
-							?>
-								</option>
+								?>
+							</option>
 							<?php foreach ( $blocks as $name => $label ) : ?>
 								<option
 									value="<?php echo esc_attr( $name ); ?>"><?php echo esc_html( $label ); ?></option>
@@ -672,7 +692,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 		/**
 		 * Ensure the slug meta box is visible by default for the CPT.
 		 *
-		 * @param array           $hidden Array of hidden meta boxes.
+		 * @param string[]        $hidden Array of hidden meta boxes.
 		 * @param WP_Screen|mixed $screen Current screen instance or identifier.
 		 *
 		 * @return array
