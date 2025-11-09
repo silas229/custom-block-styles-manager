@@ -412,6 +412,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 			$meta_key  = self::META_BLOCK;
 			$post_type = self::CPT;
 
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$used_raw = $wpdb->get_col(
 				$wpdb->prepare(
 					"SELECT DISTINCT pm.meta_value
