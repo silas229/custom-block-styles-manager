@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle>
+	<domain name="custom-block-styles-manager">
+		<project>
+			<target>
+				<directory>languages</directory>
+			</target>
+			<template>
+				<file>languages/custom-block-styles-manager.pot</file>
+			</template>
+		</project>
+	</domain>
+</bundle>

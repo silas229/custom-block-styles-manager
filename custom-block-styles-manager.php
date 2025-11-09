@@ -7,6 +7,7 @@
  * Author URI: https://github.com/silas229
  * License: GPL-2.0-or-later
  * Text Domain: custom-block-styles-manager
+ * Domain Path: /languages/
  *
  * @package CustomBlockStylesManager
  */
@@ -31,6 +32,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 		 * Bootstrap hooks.
 		 */
 		public static function init(): void {
+			load_textdomain( 'custom-block-styles-manager', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 			add_action( 'init', array( __CLASS__, 'register_post_type' ) );
 			add_action( 'admin_menu', array( __CLASS__, 'register_admin_submenu' ) );
 			add_filter(
