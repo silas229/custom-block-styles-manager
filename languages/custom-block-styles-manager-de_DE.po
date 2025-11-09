@@ -1,105 +1,121 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Custom Block Styles Manager\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-07 16:46+0000\n"
-"PO-Revision-Date: 2025-11-09 14:58+0100\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/custom-block-styles-manager\n"
 "Last-Translator: Silas Meyer <silas.meyer@grnstn.de>\n"
 "Language-Team: Deutsch\n"
-"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Domain: custom-block-styles-manager\n"
 "X-Generator: Poedit 3.8\n"
 
-#. %1$s is replaced with the code tag (renders the actual class in the editor, e.g. <code>is-style-{slug}</code>)
-#: custom-block-styles-manager.php:201
-#, php-format
-msgid ""
-"Add CSS that will be applied when this style is selected. While editing, the "
-"block receives the class %1$s."
-msgstr ""
-"Füge CSS hinzu, das angewendet wird, wenn dieser Stil ausgewählt wird. "
-"Während der Bearbeitung erhält der Block die Klasse %1$s."
-
-#. Description of the plugin
-msgid "Add custom block style variations with your own CSS."
-msgstr ""
-"Füge benutzerdefinierte Blockstilvariationen mit deinem eigenen CSS hinzu."
-
-#: custom-block-styles-manager.php:100
-msgid "Add New"
-msgstr "Neu hinzufügen"
-
-#: custom-block-styles-manager.php:101
-msgid "Add New Block Style"
-msgstr "Neuen Style hinzufügen"
-
-#: custom-block-styles-manager.php:104
-msgid "All Block Styles"
-msgstr "Alle Styles"
-
-#: custom-block-styles-manager.php:404
-msgid "All blocks"
-msgstr "Alle Blöcke"
-
-#: custom-block-styles-manager.php:320 custom-block-styles-manager.php:326
-#: custom-block-styles-manager.php:448
-msgid "Block"
-msgstr "Block"
-
-#: custom-block-styles-manager.php:99
-msgid "Block Style"
-msgstr "Block Style"
-
-#: custom-block-styles-manager.php:105
-msgid "Block Style Attributes"
-msgstr "Style-Attribute"
-
-#: custom-block-styles-manager.php:143
-msgid "Block Style Settings"
-msgstr "Style-Einstellungen"
-
-#: custom-block-styles-manager.php:62 custom-block-styles-manager.php:82
-#: custom-block-styles-manager.php:98 custom-block-styles-manager.php:108
-msgid "Block Styles"
-msgstr "Block Styles"
-
-#. Name of the plugin
+#. Plugin Name of the plugin
+#: custom-block-styles-manager.php
 msgid "Custom Block Styles Manager"
 msgstr ""
 
-#: custom-block-styles-manager.php:152
-msgid "Custom CSS"
-msgstr "Eigenes CSS"
+#. Description of the plugin
+#: custom-block-styles-manager.php
+msgid "Add custom block style variations with your own CSS."
+msgstr "Füge benutzerdefinierte Blockstilvariationen mit deinem eigenen CSS hinzu."
 
-#: custom-block-styles-manager.php:102
+#. Author of the plugin
+#: custom-block-styles-manager.php
+msgid "Silas Meyer"
+msgstr ""
+
+#. Author URI of the plugin
+#: custom-block-styles-manager.php
+msgid "https://github.com/silas229"
+msgstr ""
+
+#: custom-block-styles-manager.php:75
+#: custom-block-styles-manager.php:95
+#: custom-block-styles-manager.php:110
+#: custom-block-styles-manager.php:120
+msgid "Block Styles"
+msgstr "Block Styles"
+
+#: custom-block-styles-manager.php:111
+msgid "Block Style"
+msgstr "Block Style"
+
+#: custom-block-styles-manager.php:112
+msgid "Add New"
+msgstr "Neu hinzufügen"
+
+#: custom-block-styles-manager.php:113
+msgid "Add New Block Style"
+msgstr "Neuen Style hinzufügen"
+
+#: custom-block-styles-manager.php:114
 msgid "Edit Block Style"
 msgstr "Style bearbeiten"
 
-#: custom-block-styles-manager.php:103
+#: custom-block-styles-manager.php:115
 msgid "New Block Style"
 msgstr "Neuer Style"
 
-#: custom-block-styles-manager.php:107
-msgid "No block styles found in Trash."
-msgstr "Keine Styles im Papierkorb gefunden."
+#: custom-block-styles-manager.php:116
+msgid "All Block Styles"
+msgstr "Alle Styles"
 
-#: custom-block-styles-manager.php:106
+#: custom-block-styles-manager.php:117
+msgid "Block Style Attributes"
+msgstr "Style-Attribute"
+
+#: custom-block-styles-manager.php:118
 msgid "No block styles found."
 msgstr "Keine Styles gefunden."
 
-#: custom-block-styles-manager.php:175
-msgid "Select a block"
-msgstr "Wähle einen Block"
+#: custom-block-styles-manager.php:119
+msgid "No block styles found in Trash."
+msgstr "Keine Styles im Papierkorb gefunden."
 
-#: custom-block-styles-manager.php:173
+#: custom-block-styles-manager.php:154
+msgid "Block Style Settings"
+msgstr "Style-Einstellungen"
+
+#: custom-block-styles-manager.php:164
+#: custom-block-styles-manager.php:227
+msgid "Custom CSS"
+msgstr "Eigenes CSS"
+
+#: custom-block-styles-manager.php:185
 msgid "Target Block"
 msgstr "Zielblock"
 
-#. No change option in bulk edit
-#: custom-block-styles-manager.php:450
+#: custom-block-styles-manager.php:188
+msgid "Select a block"
+msgstr "Wähle einen Block"
+
+#. translators: %1$s is replaced with the code tag (renders the actual class in the editor, e.g. <code>is-style-{slug}</code>)
+#: custom-block-styles-manager.php:215
+#, php-format
+msgid "Add CSS that will be applied when this style is selected. While editing, the block receives the class %1$s."
+msgstr "Füge CSS hinzu, das angewendet wird, wenn dieser Stil ausgewählt wird. Während der Bearbeitung erhält der Block die Klasse %1$s."
+
+#: custom-block-styles-manager.php:342
+#: custom-block-styles-manager.php:350
+#: custom-block-styles-manager.php:518
+msgid "Block"
+msgstr "Block"
+
+#: custom-block-styles-manager.php:344
+#: custom-block-styles-manager.php:353
+msgid "CSS class"
+msgstr "CSS-Klasse"
+
+#: custom-block-styles-manager.php:464
+msgid "All blocks"
+msgstr "Alle Blöcke"
+
+#. translators: No change option in bulk edit
+#: custom-block-styles-manager.php:523
 msgid "— No change —"
 msgstr "— Keine Änderung —"

@@ -224,7 +224,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 				?>
 			</p>
 			<label for="cbsm-custom-css"
-					class="screen-reader-text"><?php esc_html_e( 'Custom CSS for this style', 'custom-block-styles-manager' ); ?></label>
+					class="screen-reader-text"><?php esc_html_e( 'Custom CSS', 'custom-block-styles-manager' ); ?></label>
 			<textarea name="cbsm_custom_css" id="cbsm-custom-css" rows="12" class="widefat"
 						style="font-family: monospace;"><?php echo esc_textarea( $css ); ?></textarea>
 			<?php
