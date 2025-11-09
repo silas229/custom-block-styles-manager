@@ -19,14 +19,14 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 	 * Main plugin class for handling Block Style management.
 	 */
 	class Custom_Block_Styles_Manager {
-		const CPT = 'block_style';
-		const META_BLOCK = '_cbsm_block_name';
-		const META_STYLE_NAME = '_cbsm_style_name';
-		const META_STYLE_SLUG = '_cbsm_style_slug';
-		const META_CSS = '_cbsm_custom_css';
-		const NONCE_FIELD = '_cbsm_meta_nonce';
+		const CPT                = 'block_style';
+		const META_BLOCK         = '_cbsm_block_name';
+		const META_STYLE_NAME    = '_cbsm_style_name';
+		const META_STYLE_SLUG    = '_cbsm_style_slug';
+		const META_CSS           = '_cbsm_custom_css';
+		const NONCE_FIELD        = '_cbsm_meta_nonce';
 		const CODE_EDITOR_HANDLE = 'cbsm-css-code-editor';
-		const CAPABILITY = 'switch_themes';
+		const CAPABILITY         = 'switch_themes';
 
 		/**
 		 * Bootstrap hooks.
@@ -34,15 +34,23 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 		public static function init(): void {
 			add_action( 'init', array( __CLASS__, 'register_post_type' ) );
 			add_action( 'admin_menu', array( __CLASS__, 'register_admin_submenu' ) );
-			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array(
-				__CLASS__,
-				'add_plugin_action_link'
-			) );
+			add_filter(
+				'plugin_action_links_' . plugin_basename( __FILE__ ),
+				array(
+					__CLASS__,
+					'add_plugin_action_link',
+				)
+			);
 			add_filter( 'manage_edit-' . self::CPT . '_columns', array( __CLASS__, 'add_block_type_columns' ) );
-			add_action( 'manage_' . self::CPT . '_posts_custom_column', array(
-				__CLASS__,
-				'render_block_type_columns'
-			), 10, 2 );
+			add_action(
+				'manage_' . self::CPT . '_posts_custom_column',
+				array(
+					__CLASS__,
+					'render_block_type_columns',
+				),
+				10,
+				2
+			);
 			add_action( 'restrict_manage_posts', array( __CLASS__, 'render_block_type_filter' ) );
 			add_action( 'pre_get_posts', array( __CLASS__, 'apply_block_filter' ) );
 			add_action( 'quick_edit_custom_box', array( __CLASS__, 'render_quick_edit_box' ), 10, 2 );
@@ -200,28 +208,31 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 				<?php
 				$code_tag = '<code id="cbsm-style-class-preview">' . ( $style_slug ? 'is-style-' . sanitize_html_class( $style_slug ) : 'is-style-{slug}' ) . '</code>';
 
-				echo wp_kses( sprintf(
-				/* translators: %1$s is replaced with the code tag (renders the actual class in the editor, e.g. <code>is-style-{slug}</code>) */
-					__( 'Add CSS that will be applied when this style is selected. While editing, the block receives the class %1$s.', 'custom-block-styles-manager' ),
-					$code_tag
-				), array(
-					'code' => array(
-						'id' => true,
+				echo wp_kses(
+					sprintf(
+					/* translators: %1$s is replaced with the code tag (renders the actual class in the editor, e.g. <code>is-style-{slug}</code>) */
+						__( 'Add CSS that will be applied when this style is selected. While editing, the block receives the class %1$s.', 'custom-block-styles-manager' ),
+						$code_tag
 					),
-				) );
+					array(
+						'code' => array(
+							'id' => true,
+						),
+					)
+				);
 				?>
 			</p>
 			<label for="cbsm-custom-css"
-				   class="screen-reader-text"><?php esc_html_e( 'Custom CSS for this style', 'custom-block-styles-manager' ); ?></label>
+					class="screen-reader-text"><?php esc_html_e( 'Custom CSS for this style', 'custom-block-styles-manager' ); ?></label>
 			<textarea name="cbsm_custom_css" id="cbsm-custom-css" rows="12" class="widefat"
-					  style="font-family: monospace;"><?php echo esc_textarea( $css ); ?></textarea>
+						style="font-family: monospace;"><?php echo esc_textarea( $css ); ?></textarea>
 			<?php
 		}
 
 		/**
 		 * Save meta values for the custom post type.
 		 *
-		 * @param int $post_id Saved post ID.
+		 * @param int     $post_id Saved post ID.
 		 * @param WP_Post $post Post object.
 		 */
 		public static function save_meta( int $post_id, WP_Post $post ): void {
@@ -304,10 +315,14 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 
 				// Provide registered blocks and a nonce for bulk actions.
 				$registered = self::get_registered_blocks();
-				wp_localize_script( 'cbsm-admin-list', 'cbsmAdminListData', array(
-					'blocks'    => $registered,
-					'bulkNonce' => wp_create_nonce( 'cbsm_bulk_nonce' ),
-				) );
+				wp_localize_script(
+					'cbsm-admin-list',
+					'cbsmAdminListData',
+					array(
+						'blocks'    => $registered,
+						'bulkNonce' => wp_create_nonce( 'cbsm_bulk_nonce' ),
+					)
+				);
 
 				wp_enqueue_script( 'cbsm-admin-list' );
 			}
@@ -346,7 +361,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 		 * - cbsm_style_class: shows the generated CSS class (is-style-{slug}) for the style
 		 *
 		 * @param string $column Column identifier.
-		 * @param int $post_id Current post ID.
+		 * @param int    $post_id Current post ID.
 		 */
 		public static function render_block_type_columns( string $column, int $post_id ): void {
 			$post = get_post( $post_id );
@@ -396,16 +411,18 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 			$meta_key  = self::META_BLOCK;
 			$post_type = self::CPT;
 
-			$used_raw = $wpdb->get_col( $wpdb->prepare(
-				"SELECT DISTINCT pm.meta_value
+			$used_raw = $wpdb->get_col(
+				$wpdb->prepare(
+					"SELECT DISTINCT pm.meta_value
 		 FROM $wpdb->postmeta pm
 		 JOIN $wpdb->posts p ON pm.post_id = p.ID
 		 WHERE pm.meta_key = %s
 		   AND p.post_type = %s
 		   AND p.post_status = 'publish'",
-				$meta_key,
-				$post_type
-			) );
+					$meta_key,
+					$post_type
+				)
+			);
 
 			$registered = self::get_registered_blocks();
 			$used       = array();
@@ -477,8 +494,12 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 					<label>
 						<span class="title"><?php esc_html_e( 'Block', 'custom-block-styles-manager' ); ?></span>
 						<select name="cbsm_block_name">
-							<option value=""><?php /* translators: No change option in bulk edit */
-								esc_html_e( '— No change —', 'custom-block-styles-manager' ); ?></option>
+							<option value="">
+							<?php
+							/* translators: No change option in bulk edit */
+								esc_html_e( '— No change —', 'custom-block-styles-manager' );
+							?>
+								</option>
 							<?php foreach ( $blocks as $name => $label ) : ?>
 								<option
 									value="<?php echo esc_attr( $name ); ?>"><?php echo esc_html( $label ); ?></option>
@@ -651,7 +672,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 		/**
 		 * Ensure the slug meta box is visible by default for the CPT.
 		 *
-		 * @param array $hidden Array of hidden meta boxes.
+		 * @param array           $hidden Array of hidden meta boxes.
 		 * @param WP_Screen|mixed $screen Current screen instance or identifier.
 		 *
 		 * @return array
