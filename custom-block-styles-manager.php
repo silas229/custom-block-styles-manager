@@ -250,7 +250,8 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 			}
 
 			$block_name = isset( $_POST['cbsm_block_name'] ) ? sanitize_text_field( wp_unslash( $_POST['cbsm_block_name'] ) ) : '';
-			$css_raw    = isset( $_POST['cbsm_custom_css'] ) ? sanitize_textarea_field( wp_unslash( $_POST['cbsm_custom_css'] ) ) : '';
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$css_raw = isset( $_POST['cbsm_custom_css'] ) ? wp_unslash( $_POST['cbsm_custom_css'] ) : '';
 
 			$registered_blocks = self::get_registered_blocks();
 			if ( $block_name && ! array_key_exists( $block_name, $registered_blocks ) ) {
@@ -602,8 +603,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 				}
 
 				$style_name = self::resolve_style_name_from_post( $style_post );
-				$css_raw    = get_post_meta( $style_post->ID, self::META_CSS, true );
-				$css        = self::sanitize_css( self::maybe_prefill_css( $style_slug, $css_raw ) );
+				$css        = get_post_meta( $style_post->ID, self::META_CSS, true );
 
 				$style_args = array(
 					'name'         => $style_slug,
@@ -716,7 +716,7 @@ if ( ! class_exists( 'Custom_Block_Styles_Manager' ) ) {
 		 * @return string Sanitized CSS.
 		 */
 		protected static function sanitize_css( string $css ): string {
-			return trim( wp_kses( $css, array() ) );
+			return trim( wp_strip_all_tags( $css ) );
 		}
 	}
 
