@@ -65,7 +65,7 @@ The plugin automatically registers your custom styles with WordPress and applies
 
 = Manual Installation =
 
-1. Download the plugin ZIP file from WordPress.org
+1. Download the plugin ZIP file
 2. Log in to your WordPress admin panel
 3. Navigate to Plugins > Add New
 4. Click the "Upload Plugin" button at the top
