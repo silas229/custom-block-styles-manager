@@ -21,7 +21,7 @@ Custom Block Styles Manager allows you to easily create and manage custom style 
 * **Visual Style Editor**: Use the built-in CSS editor with syntax highlighting to write custom styles
 * **Easy Management**: Manage all your block styles from a centralized location in the WordPress admin
 * **No Coding Required**: Simple interface for non-developers to create custom block styles
-* **Live Preview**: See the generated CSS class name (is-style-{slug}) for each style
+* **CSS Class Preview**: See the generated CSS class name (is-style-{slug}) for each style
 * **Organized Admin Interface**: Filter and sort block styles by block type
 * **Quick Edit Support**: Quickly update block assignments using WordPress's quick edit feature
 * **Theme Independent**: Styles are managed separately from your theme, making them portable across theme changes
@@ -78,7 +78,7 @@ The plugin automatically registers your custom styles with WordPress and applies
 2. Click "Add New" to create your first custom block style
 3. Enter a title for your style (e.g., "Highlighted Paragraph")
 4. Select the block you want to style from the dropdown menu
-5. Write your custom CSS in the editor (a default selector will be provided)
+5. Write your custom CSS in the editor (a default selector like `.is-style-your-slug` will be provided)
 6. Click "Publish" to make the style available
 7. Open the block editor and select the block type you styled
 8. Your custom style will appear in the block's style picker
