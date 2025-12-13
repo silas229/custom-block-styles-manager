@@ -3,6 +3,8 @@
 /.github
 /node_modules
 /vendor
+.DS_Store
+*.po*~
 
 .distignore
 .gitignore
