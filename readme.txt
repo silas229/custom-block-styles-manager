@@ -150,6 +150,15 @@ This plugin uses a custom icon derived from Dashicons,
 
 == Changelog ==
 
+= 1.0.1 =
+* Enhanced GitHub Actions workflows with proper permissions and security configurations
+* Added SonarCloud integration for automated code quality analysis
+* Improved JavaScript code quality by replacing String#replace with String#replaceAll
+* Refactored JavaScript to use globalThis instead of window object for better compatibility
+* Updated plugin deployment workflow with automated SVN deployment and GitHub release creation
+* Improved readme documentation for better clarity on CSS requirements and user interface
+* Restricted SonarCloud analysis to main branch for optimal workflow performance
+
 = 1.0.0 =
 * Initial release
 * Create custom block style variations for any Gutenberg block
@@ -158,6 +167,9 @@ This plugin uses a custom icon derived from Dashicons,
 * Admin interface under Appearance menu
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Maintenance release with improved code quality, enhanced CI/CD workflows, and updated documentation.
 
 = 1.0.0 =
 Initial release of Custom Block Styles Manager.
