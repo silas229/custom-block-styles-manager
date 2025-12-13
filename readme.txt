@@ -141,6 +141,10 @@ Yes! The block styles list includes a filter dropdown that allows you to view st
 
 The plugin has minimal performance impact. CSS is only loaded inline when a block uses a custom style, so unused styles don't add any overhead to your pages.
 
+== Credits ==
+This plugin uses a custom icon derived from Dashicons,
+© WordPress contributors, licensed under GPLv2 or later.
+
 == Screenshots ==
 
 1. Block Styles management interface showing the list of custom styles with block type filtering
