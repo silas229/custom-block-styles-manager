@@ -6,8 +6,8 @@
 		String(v)
 			.trim()
 			.toLowerCase()
-			.replace(/[^a-z0-9_-]+/g, "-")
-			.replace(/^-+|-+$/g, "");
+			.replaceAll(/[^a-z0-9_-]+/g, "-")
+			.replaceAll(/^-+|-+$/g, "");
 
 	const boilerplateFor = (slug) => (slug ? `.is-style-${slug} {\n\n}\n` : "");
 
@@ -18,12 +18,12 @@
 	};
 
 	const run = () => {
-		const settings = window?.cbsmCodeEditorSettings?.settings;
+		const settings = globalThis?.cbsmCodeEditorSettings?.settings;
 		let editor = null;
-		if (window?.wp?.codeEditor && settings) {
+		if (globalThis?.wp?.codeEditor && settings) {
 			try {
 				// store and reuse the initialized editor instance to avoid relying solely on wp.codeEditor.instances
-				editor = window.wp.codeEditor.initialize("cbsm-custom-css", settings);
+				editor = globalThis.wp.codeEditor.initialize("cbsm-custom-css", settings);
 			} catch (e) {
 				console.debug?.(e);
 			}
