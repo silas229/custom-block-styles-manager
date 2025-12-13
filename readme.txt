@@ -52,6 +52,14 @@ The plugin automatically registers your custom styles with WordPress and applies
 * Requires the `switch_themes` capability to manage block styles
 * Compatible with all registered Gutenberg blocks
 
+== Support ==
+Community support: via the [support forums](https://wordpress.org/support/plugin/custom-block-styles-manager/) on wordpress.org
+Bug reporting (preferred): file an issue on [GitHub](https://github.com/silas229/custom-block-styles-manager)
+
+== Contribute ==
+
+Contributions are welcome! If you'd like to contribute to the development of Custom Block Styles Manager, please visit the [GitHub repository](https://github.com/silas229/custom-block-styles-manager). By contributing, you agree that your contributions will be licensed under its GPLv2 License.
+
 == Installation ==
 
 = Automatic Installation =
