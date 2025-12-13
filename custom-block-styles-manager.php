@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Custom Block Styles Manager
  * Description: Add custom block style variations with your own CSS.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Silas Meyer
  * Author URI: https://github.com/silas229
  * License: GPL-2.0-or-later
