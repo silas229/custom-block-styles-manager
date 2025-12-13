@@ -1,5 +1,7 @@
 # The name of the Github Action that displays in github.com/<username>/<repo>/actions
 name: Deploy to WordPress.org Repository
+permissions:
+    contents: write
 
 # Here we can define the events "on" which the action should be triggered.
 on:
@@ -57,8 +59,8 @@ jobs:
 
             -   name: WordPress Plugin Deploy
 
-                  # You can add unique ids to specific steps if you want to reference their output later in the workflow.
-                  #
+                # You can add unique ids to specific steps if you want to reference their output later in the workflow.
+                #
                 # Here, this unique identifier lets us use the output from the action to get the zip-path later.
                 id: deploy
 
