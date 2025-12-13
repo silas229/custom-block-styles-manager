@@ -13,14 +13,13 @@ Add custom block style variations with your own CSS.
 
 == Description ==
 
-Custom Block Styles Manager allows you to easily create and manage custom style variations for any WordPress Gutenberg block. With this plugin, you can add unique visual styles to your blocks without writing code or modifying your theme.
-
+Custom Block Styles Manager allows you to easily create and manage custom style variations for any WordPress Gutenberg block. With this plugin, you can add unique visual styles to your blocks through a user-friendly interface, without modifying your theme files.
 = Key Features =
 
 * **Create Custom Block Styles**: Add new style variations to any registered Gutenberg block
 * **Visual Style Editor**: Use the built-in CSS editor with syntax highlighting to write custom styles
 * **Easy Management**: Manage all your block styles from a centralized location in the WordPress admin
-* **No Coding Required**: Simple interface for non-developers to create custom block styles
+* **User-Friendly Interface**: Easily create and manage custom block styles with a streamlined CSS editor
 * **CSS Class Preview**: See the generated CSS class name (is-style-{slug}) for each style
 * **Organized Admin Interface**: Filter and sort block styles by block type
 * **Quick Edit Support**: Quickly update block assignments using WordPress's quick edit feature
@@ -91,8 +90,7 @@ A block style variation is an alternative visual style for a WordPress block. Fo
 
 = Do I need to know CSS to use this plugin? =
 
-Basic CSS knowledge is helpful but not required. The plugin provides a starting template with the correct CSS class selector. You can start with simple properties like background-color, padding, or border and learn as you go.
-
+Basic CSS knowledge is required, though you can start with simple properties and learn as you go. The plugin provides a starting template with the correct CSS class selector, making it easier to define your own styles.
 = Will my custom styles work with any theme? =
 
 Yes! Block styles are registered independently of your theme, so they will work regardless of which theme you're using. However, the appearance may vary slightly depending on your theme's base styles.
