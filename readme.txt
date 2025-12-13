@@ -157,6 +157,10 @@ This plugin uses a custom icon derived from Dashicons,
 * Block type filtering and quick edit support
 * Admin interface under Appearance menu
 
+= 1.0.1 =
+* Clarified plugin description and skill requirements in the readme file
+* Minor code refactorings
+
 == Upgrade Notice ==
 
 = 1.0.0 =
