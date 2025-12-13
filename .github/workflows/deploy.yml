@@ -1,4 +1,4 @@
-# The name of the Github Action that displays in github.com/<username>/<repo>/actions
+# The name of the GitHub Action that displays in github.com/silas229/custom-block-styles-manager/actions
 name: Deploy to WordPress.org Repository
 permissions:
     contents: write
@@ -22,8 +22,8 @@ jobs:
 
     # A unique job identifier.
     #
-    # Github Actions can have multiple jobs and each can be referenced by its name.
-    # However, we only need to run a few steps here and they can be handled in a single job.
+    # GitHub Actions can have multiple jobs and each can be referenced by its name.
+    # However, we only need to run a few steps here, and they can be handled in a single job.
     deploy_to_wp_repository:
 
         # The proper name for the job being run.
@@ -33,14 +33,14 @@ jobs:
         # pretty typical. Since we are only interacting with git and subversion, Ubuntu is perfect
         # for this.
         #
-        # Github does offer other platforms if you need them: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on
+        # GitHub does offer other platforms if you need them: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on
         runs-on: ubuntu-latest
 
         # Every job has a specific set of steps that it goes through to do its "work".
         #
-        # Each step has a two key elements:
+        # Each step has two key elements:
         # • Name
-        # • a "run" command (an arbitrary CLI command to execute) OR a "uses" command that pulls in and executes a 3rd party action.
+        # • a "run" command (an arbitrary CLI command to execute) OR an "uses" command that pulls in and executes a 3rd party action.
         steps:
 
             # Most workflows begin by checking out the repository into the workflow filesystem.
@@ -48,14 +48,7 @@ jobs:
             # This is just like cloning a repository except it only checks out the specific commit
             # the job is executed for. In our case here, the commit that the release is attached to.
             -   name: Checkout code
-                uses: actions/checkout@v2
-
-            # Optional: If your plugin is using composer dependencies, we want to include them
-            # WITHOUT the dev dependencies.
-            -   name: Build
-                run: |
-                    npm install
-                    npm run build
+                uses: actions/checkout@v4
 
             -   name: WordPress Plugin Deploy
 
@@ -71,21 +64,21 @@ jobs:
                 with:
                     generate-zip: true
 
-                    # Steps can also set environment variables which can be configured in the Github settings for the
+                    # Steps can also set environment variables which can be configured in the GitHub settings for the
                     # repository. Here, we are using action secrets SVN_USERNAME, SVN_PASSWORD, and PLUGIN_SLUG which
                     # authenticate with WordPress and lets the action deploy our plugin to the repository.
                     #
-                    # To learn more about setting and using secrets with Github Actions, check out: https://docs.github.com/en/actions/security-guides/encrypted-secrets?tool=webui#about-encrypted-secrets
+                    # To learn more about setting and using secrets with GitHub Actions, check out: https://docs.github.com/en/actions/security-guides/encrypted-secrets?tool=webui#about-encrypted-secrets
                 env:
                     SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
                     SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
 
-            # After the deploy, we also want to create a zip and upload it to the release on Github. We don't want
+            # After the deployment, we also want to create a zip and upload it to the release on GitHub. We don't want
             # users to have to go to the repository to find our plugin :).
             -   name: Upload release asset
                 uses: softprops/action-gh-release@v2
                 env:
-                    # Note, this is an exception to action secrets: GH_TOKEN is always available and provides access to
+                    # Note, this is an exception to action secrets: GITHUB_TOKEN is always available and provides access to
                     # the current repository this action runs in.
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
