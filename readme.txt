@@ -141,6 +141,11 @@ Yes! The block styles list includes a filter dropdown that allows you to view st
 
 The plugin has minimal performance impact. CSS is only loaded inline when a block uses a custom style, so unused styles don't add any overhead to your pages.
 
+== Screenshots ==
+
+1. Block Styles management interface showing the list of custom styles with block type filtering
+2. Creating a new block style with the CSS editor and block selector
+
 == Changelog ==
 
 = 1.0.0 =
