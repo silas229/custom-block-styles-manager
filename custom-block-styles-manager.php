@@ -1,8 +1,12 @@
 <?php
 /**
  * Plugin Name: Custom Block Styles Manager
+ * Plugin ID: did:plc:73k7qqmkf3syzhlpl444lm5b
  * Description: Add custom block style variations with your own CSS.
- * Version: 1.0.1
+ * GitHub Plugin URI: https://github.com/silas229/custom-block-styles-manager
+ * Primary Branch: main
+ * Release Asset: true
+ * Version: 1.0.2
  * Author: Silas Meyer
  * Author URI: https://github.com/silas229
  * License: GPL-2.0-or-later
