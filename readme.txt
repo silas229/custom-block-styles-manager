@@ -4,7 +4,7 @@ Donate link: https://github.com/sponsors/silas229
 Tags: block-styles, gutenberg, custom-blocks
 Requires at least: 5.3
 Tested up to: 6.9
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,14 +13,13 @@ Add custom block style variations with your own CSS.
 
 == Description ==
 
-Custom Block Styles Manager allows you to easily create and manage custom style variations for any WordPress Gutenberg block. With this plugin, you can add unique visual styles to your blocks without writing code or modifying your theme.
-
+Custom Block Styles Manager allows you to easily create and manage custom style variations for any WordPress Gutenberg block. With this plugin, you can add unique visual styles to your blocks through a user-friendly interface, without modifying your theme files.
 = Key Features =
 
 * **Create Custom Block Styles**: Add new style variations to any registered Gutenberg block
 * **Visual Style Editor**: Use the built-in CSS editor with syntax highlighting to write custom styles
 * **Easy Management**: Manage all your block styles from a centralized location in the WordPress admin
-* **No Coding Required**: Simple interface for non-developers to create custom block styles
+* **User-Friendly Interface**: Easily create and manage custom block styles with a streamlined CSS editor
 * **CSS Class Preview**: See the generated CSS class name (is-style-{slug}) for each style
 * **Organized Admin Interface**: Filter and sort block styles by block type
 * **Quick Edit Support**: Quickly update block assignments using WordPress's quick edit feature
@@ -53,13 +52,25 @@ The plugin automatically registers your custom styles with WordPress and applies
 * Requires the `switch_themes` capability to manage block styles
 * Compatible with all registered Gutenberg blocks
 
+== Support ==
+File an issue on [GitHub](https://github.com/silas229/custom-block-styles-manager)
+
+== Contribute ==
+
+Contributions are welcome! If you'd like to contribute to the development of Custom Block Styles Manager, please visit the [GitHub repository](https://github.com/silas229/custom-block-styles-manager). By contributing, you agree that your contributions will be licensed under its GPLv2 License.
+
 == Installation ==
 
 = Automatic Installation =
 
 1. Log in to your WordPress admin panel
-2. Navigate to Plugins > Add New
-3. Search for "Custom Block Styles Manager"
+3. Visit [FAIR.pm](https://fair.pm/) and download the "FAIR Connect" plugin as a ZIP file.
+4. Navigate to Plugins > Add New
+5. Click the "Upload Plugin" button at the top
+6. Choose the downloaded ZIP file and click "Install Now"
+7. After installation completes, click "Activate Plugin"
+8. Once FAIR Connect is activated, go to Plugins > Add New
+3. Search for "did:plc:73k7qqmkf3syzhlpl444lm5b"
 4. Click "Install Now" on the Custom Block Styles Manager plugin
 5. After installation completes, click "Activate"
 
@@ -91,8 +102,7 @@ A block style variation is an alternative visual style for a WordPress block. Fo
 
 = Do I need to know CSS to use this plugin? =
 
-Basic CSS knowledge is helpful but not required. The plugin provides a starting template with the correct CSS class selector. You can start with simple properties like background-color, padding, or border and learn as you go.
-
+Basic CSS knowledge is required, though you can start with simple properties and learn as you go. The plugin provides a starting template with the correct CSS class selector, making it easier to define your own styles.
 = Will my custom styles work with any theme? =
 
 Yes! Block styles are registered independently of your theme, so they will work regardless of which theme you're using. However, the appearance may vary slightly depending on your theme's base styles.
@@ -159,7 +169,17 @@ This plugin uses a custom icon derived from Dashicons,
 * Block type filtering and quick edit support
 * Admin interface under Appearance menu
 
+= 1.0.1 =
+* Clarified plugin description and skill requirements in the readme file
+* Minor code refactorings
+
+= 1.0.2 =
+* Added plugin to new FAIR package manager instead of WordPress.org repository
+
 == Upgrade Notice ==
 
 = 1.0.0 =
 Initial release of Custom Block Styles Manager.
+
+= 1.0.2 =
+This is the first release available via FAIR package manager. You may need to reinstall the plugin if you were using an older version from a different source.
