@@ -4,7 +4,7 @@ Donate link: https://github.com/sponsors/silas229
 Tags: block-styles, gutenberg, custom-blocks
 Requires at least: 5.3
 Tested up to: 6.9
-Stable tag: 1.0.1
+Stable tag: v1.0.2
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -53,8 +53,7 @@ The plugin automatically registers your custom styles with WordPress and applies
 * Compatible with all registered Gutenberg blocks
 
 == Support ==
-Community support: via the [support forums](https://wordpress.org/support/plugin/custom-block-styles-manager/) on wordpress.org
-Bug reporting (preferred): file an issue on [GitHub](https://github.com/silas229/custom-block-styles-manager)
+File an issue on [GitHub](https://github.com/silas229/custom-block-styles-manager)
 
 == Contribute ==
 
@@ -65,8 +64,13 @@ Contributions are welcome! If you'd like to contribute to the development of Cus
 = Automatic Installation =
 
 1. Log in to your WordPress admin panel
-2. Navigate to Plugins > Add New
-3. Search for "Custom Block Styles Manager"
+3. Visit [FAIR.pm](https://fair.pm/) and download the "FAIR Connect" plugin as a ZIP file.
+4. Navigate to Plugins > Add New
+5. Click the "Upload Plugin" button at the top
+6. Choose the downloaded ZIP file and click "Install Now"
+7. After installation completes, click "Activate Plugin"
+8. Once FAIR Connect is activated, go to Plugins > Add New
+3. Search for "did:plc:73k7qqmkf3syzhlpl444lm5b"
 4. Click "Install Now" on the Custom Block Styles Manager plugin
 5. After installation completes, click "Activate"
 
@@ -169,7 +173,13 @@ This plugin uses a custom icon derived from Dashicons,
 * Clarified plugin description and skill requirements in the readme file
 * Minor code refactorings
 
+= 1.0.2 =
+* Added plugin to new FAIR package manager instead of WordPress.org repository
+
 == Upgrade Notice ==
 
 = 1.0.0 =
 Initial release of Custom Block Styles Manager.
+
+= 1.0.2 =
+This is the first release available via FAIR package manager. You may need to reinstall the plugin if you were using an older version from a different source.
